@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KursWorkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Metro">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NameBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Metro_Branch" Relationship="Self.FK_Metro_Branch_Metro" FromRole="Metro" ToRole="Metro_Branch" />
+  </EntityType>
+  <EntityType Name="Metro_Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NameStation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Metro" Relationship="Self.FK_Metro_Branch_Metro" FromRole="Metro_Branch" ToRole="Metro" />
+    <NavigationProperty Name="Metro_Time" Relationship="Self.FK_Metro_Time_Metro_Branch" FromRole="Metro_Branch" ToRole="Metro_Time" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Stop" Relationship="Self.FK_Stop_Route" FromRole="Route" ToRole="Stop" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Route" FromRole="Route" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Stop">
+    <Key>
+      <PropertyRef Name="StopID" />
+    </Key>
+    <Property Name="StopNum" Type="Int32" Nullable="false" />
+    <Property Name="StopID" Type="Int32" Nullable="false" />
+    <Property Name="StopCounter" Type="Int32" Nullable="false" />
+    <Property Name="StopName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Route" Relationship="Self.FK_Stop_Route" FromRole="Stop" ToRole="Route" />
+    <NavigationProperty Name="Time" Relationship="Self.FK_Time_Stop" FromRole="Stop" ToRole="Time" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserLogin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFavourite" Type="Int32" />
+    <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Route" Relationship="Self.FK_Users_Route" FromRole="Users" ToRole="Route" />
+  </EntityType>
+  <EntityType Name="Information">
+    <Key>
+      <PropertyRef Name="Drivers" />
+      <PropertyRef Name="Cars" />
+    </Key>
+    <Property Name="Drivers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cars" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Metro_Time">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Hours" />
+      <PropertyRef Name="Minuts" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Int32" Nullable="false" />
+    <Property Name="Minuts" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Metro_Branch" Relationship="Self.FK_Metro_Time_Metro_Branch" FromRole="Metro_Time" ToRole="Metro_Branch" />
+  </EntityType>
+  <EntityType Name="Time">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Hour" />
+      <PropertyRef Name="Minute" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Hour" Type="Int32" Nullable="false" />
+    <Property Name="Minute" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Stop" Relationship="Self.FK_Time_Stop" FromRole="Time" ToRole="Stop" />
+  </EntityType>
+  <Association Name="FK_Metro_Branch_Metro">
+    <End Role="Metro" Type="Self.Metro" Multiplicity="1" />
+    <End Role="Metro_Branch" Type="Self.Metro_Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Metro">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Metro_Branch">
+        <PropertyRef Name="Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Metro_Time_Metro_Branch">
+    <End Role="Metro_Branch" Type="Self.Metro_Branch" Multiplicity="1" />
+    <End Role="Metro_Time" Type="Self.Metro_Time" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Metro_Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Metro_Time">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stop_Route">
+    <End Role="Route" Type="Self.Route" Multiplicity="1" />
+    <End Role="Stop" Type="Self.Stop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Stop">
+        <PropertyRef Name="StopNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Route">
+    <End Role="Route" Type="Self.Route" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserFavourite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Time_Stop">
+    <End Role="Stop" Type="Self.Stop" Multiplicity="1" />
+    <End Role="Time" Type="Self.Time" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stop">
+        <PropertyRef Name="StopID" />
+      </Principal>
+      <Dependent Role="Time">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KursWorkEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Metro" EntityType="Self.Metro" />
+    <EntitySet Name="Metro_Branch" EntityType="Self.Metro_Branch" />
+    <EntitySet Name="Route" EntityType="Self.Route" />
+    <EntitySet Name="Stop" EntityType="Self.Stop" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Information" EntityType="Self.Information" />
+    <EntitySet Name="Metro_Time" EntityType="Self.Metro_Time" />
+    <EntitySet Name="Time" EntityType="Self.Time" />
+    <AssociationSet Name="FK_Metro_Branch_Metro" Association="Self.FK_Metro_Branch_Metro">
+      <End Role="Metro" EntitySet="Metro" />
+      <End Role="Metro_Branch" EntitySet="Metro_Branch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Metro_Time_Metro_Branch" Association="Self.FK_Metro_Time_Metro_Branch">
+      <End Role="Metro_Branch" EntitySet="Metro_Branch" />
+      <End Role="Metro_Time" EntitySet="Metro_Time" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stop_Route" Association="Self.FK_Stop_Route">
+      <End Role="Route" EntitySet="Route" />
+      <End Role="Stop" EntitySet="Stop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Route" Association="Self.FK_Users_Route">
+      <End Role="Route" EntitySet="Route" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Time_Stop" Association="Self.FK_Time_Stop">
+      <End Role="Stop" EntitySet="Stop" />
+      <End Role="Time" EntitySet="Time" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

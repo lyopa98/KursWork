@@ -1,0 +1,22 @@
+﻿<Application x:Class="Kursovoi.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Kursovoi"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Favorites.xaml"/>
+                
+                <ResourceDictionary Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\MetroStations.xaml"/>
+                <ResourceDictionary Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\News.xaml"/>
+                <ResourceDictionary Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Stations.xaml"/>
+                <ResourceDictionary Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Information.xaml"/>
+                <ResourceDictionary Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Transport\Autobus.xaml"/>
+                <ResourceDictionary Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Transport\Tramvai.xaml"/>
+                <ResourceDictionary Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Transport\Trolleibus.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

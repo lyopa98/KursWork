@@ -1,0 +1,20 @@
+﻿<Window x:Class="Kursovoi.Registration2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursovoi"
+        mc:Ignorable="d"
+        Title="Registration2" Height="300" Width="300">
+    <Grid>
+        <Label Margin="30,59,196,172">Логин</Label>
+        <TextBox Margin="112,59,56,183" x:Name="LoginTB"></TextBox>
+        <Label Margin="30,102,196,129">Почта</Label>
+        <TextBox Margin="112,102,56,140" x:Name="EmailTB"></TextBox>
+        <Label Margin="30,145,196,79">Пароль</Label>
+        <PasswordBox Margin="112,145,56,97" x:Name="PasswordTB"></PasswordBox>
+
+        <Button Content="Зарегестрироваться" Margin="76,195,74,39" HorizontalAlignment="Center" Width="142" Click="Button_Click"    ></Button>
+
+    </Grid>
+</Window>

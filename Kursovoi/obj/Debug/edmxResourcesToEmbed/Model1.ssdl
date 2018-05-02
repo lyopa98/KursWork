@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище KursWorkModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "KursWork.dbo.Information" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Information">
+    <Key>
+      <PropertyRef Name="Drivers" />
+      <PropertyRef Name="Cars" />
+    </Key>
+    <Property Name="Drivers" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cars" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Metro">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NameBranch" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Metro_Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NameStation" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "KursWork.dbo.Metro_Time" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Metro_Time">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Hours" />
+      <PropertyRef Name="Minuts" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Hours" Type="int" Nullable="false" />
+    <Property Name="Minuts" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stop">
+    <Key>
+      <PropertyRef Name="StopID" />
+    </Key>
+    <Property Name="StopNum" Type="int" Nullable="false" />
+    <Property Name="StopID" Type="int" Nullable="false" />
+    <Property Name="StopCounter" Type="int" Nullable="false" />
+    <Property Name="StopName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "KursWork.dbo.Time" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Time">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Hour" />
+      <PropertyRef Name="Minute" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Hour" Type="int" Nullable="false" />
+    <Property Name="Minute" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserLogin" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserFavourite" Type="int" />
+    <Property Name="UserEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Metro_Branch_Metro">
+    <End Role="Metro" Type="Self.Metro" Multiplicity="1" />
+    <End Role="Metro_Branch" Type="Self.Metro_Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Metro">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Metro_Branch">
+        <PropertyRef Name="Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Metro_Time_Metro_Branch">
+    <End Role="Metro_Branch" Type="Self.Metro_Branch" Multiplicity="1" />
+    <End Role="Metro_Time" Type="Self.Metro_Time" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Metro_Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Metro_Time">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stop_Route">
+    <End Role="Route" Type="Self.Route" Multiplicity="1" />
+    <End Role="Stop" Type="Self.Stop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Stop">
+        <PropertyRef Name="StopNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Time_Stop">
+    <End Role="Stop" Type="Self.Stop" Multiplicity="1" />
+    <End Role="Time" Type="Self.Time" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stop">
+        <PropertyRef Name="StopID" />
+      </Principal>
+      <Dependent Role="Time">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Route">
+    <End Role="Route" Type="Self.Route" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserFavourite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище KursWorkModelContainer">
+    <EntitySet Name="Metro" EntityType="Self.Metro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Metro_Branch" EntityType="Self.Metro_Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stop" EntityType="Self.Stop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Information" EntityType="Self.Information" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Information].[Drivers] AS [Drivers], 
+    [Information].[Cars] AS [Cars]
+    FROM [dbo].[Information] AS [Information]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Metro_Time" EntityType="Self.Metro_Time" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Metro_Time].[ID] AS [ID], 
+    [Metro_Time].[Hours] AS [Hours], 
+    [Metro_Time].[Minuts] AS [Minuts]
+    FROM [dbo].[Metro_Time] AS [Metro_Time]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Time" EntityType="Self.Time" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Time].[id] AS [id], 
+    [Time].[Hour] AS [Hour], 
+    [Time].[Minute] AS [Minute]
+    FROM [dbo].[Time] AS [Time]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Metro_Branch_Metro" Association="Self.FK_Metro_Branch_Metro">
+      <End Role="Metro" EntitySet="Metro" />
+      <End Role="Metro_Branch" EntitySet="Metro_Branch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Metro_Time_Metro_Branch" Association="Self.FK_Metro_Time_Metro_Branch">
+      <End Role="Metro_Branch" EntitySet="Metro_Branch" />
+      <End Role="Metro_Time" EntitySet="Metro_Time" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stop_Route" Association="Self.FK_Stop_Route">
+      <End Role="Route" EntitySet="Route" />
+      <End Role="Stop" EntitySet="Stop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Time_Stop" Association="Self.FK_Time_Stop">
+      <End Role="Stop" EntitySet="Stop" />
+      <End Role="Time" EntitySet="Time" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Route" Association="Self.FK_Users_Route">
+      <End Role="Route" EntitySet="Route" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
