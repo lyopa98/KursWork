@@ -4,19 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fc4a45ab883d4d40ac72d39ae483e7ad" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="KursWorkModel.Metro" Width="1.5" PointX="5.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursWorkModel.Metro_Branch" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursWorkModel.Route" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursWorkModel.Stop" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursWorkModel.Users" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursWorkModel.Information" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursWorkModel.Metro_Time" Width="1.5" PointX="10.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursWorkModel.Time" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+      <Diagram DiagramId="603ddd9a077942289611aa2e53dc1fc5" Name="Diagram1">
+        <EntityTypeShape EntityType="KursWorkModel.Metro" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursWorkModel.Metro_Branch" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursWorkModel.Route" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursWorkModel.Stop" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursWorkModel.Users" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursWorkModel.Information" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursWorkModel.Metro_Time" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursWorkModel.Time" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="KursWorkModel.FK_Metro_Branch_Metro" ManuallyRouted="false" />
-        <AssociationConnector Association="KursWorkModel.FK_Metro_Time_Metro_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="KursWorkModel.FK_Metro_Time_Metro_Branch1" ManuallyRouted="false" />
         <AssociationConnector Association="KursWorkModel.FK_Stop_Route" ManuallyRouted="false" />
-        <AssociationConnector Association="KursWorkModel.FK_Users_Route" ManuallyRouted="false" />
         <AssociationConnector Association="KursWorkModel.FK_Time_Stop" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

@@ -21,7 +21,8 @@
         <PasswordBox Margin="95,99,89,140" x:Name="RegPassword">
         </PasswordBox>
 
-        <Button Margin="44,149,89,92" HorizontalAlignment="Center" Content="Войти" Width="159" Click="Button_Click" />
+        <Button Margin="44,149,89,92" Content="Войти" Width="159" Click="Button_Click" />
+        <Button Margin="44,188,89,51" Click="Button_Click_1">Выйти</Button>
 
 
     </Grid>

@@ -39,11 +39,12 @@
   </EntityType>
   <EntityType Name="Route">
     <Key>
-      <PropertyRef Name="Number" />
+      <PropertyRef Name="RouteID" />
     </Key>
-    <Property Name="Number" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RouteID" Type="int" Nullable="false" />
+    <Property Name="RouteName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RouteType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RouteNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Stop">
     <Key>
@@ -73,7 +74,7 @@
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserLogin" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="UserPassword" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="UserFavourite" Type="int" />
+    <Property Name="UserFavourite" Type="nvarchar" MaxLength="50" />
     <Property Name="UserEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_Metro_Branch_Metro">
@@ -88,7 +89,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Metro_Time_Metro_Branch">
+  <Association Name="FK_Metro_Time_Metro_Branch1">
     <End Role="Metro_Branch" Type="Self.Metro_Branch" Multiplicity="1" />
     <End Role="Metro_Time" Type="Self.Metro_Time" Multiplicity="*" />
     <ReferentialConstraint>
@@ -105,7 +106,7 @@
     <End Role="Stop" Type="Self.Stop" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Route">
-        <PropertyRef Name="Number" />
+        <PropertyRef Name="RouteID" />
       </Principal>
       <Dependent Role="Stop">
         <PropertyRef Name="StopNum" />
@@ -121,18 +122,6 @@
       </Principal>
       <Dependent Role="Time">
         <PropertyRef Name="id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Users_Route">
-    <End Role="Route" Type="Self.Route" Multiplicity="0..1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Route">
-        <PropertyRef Name="Number" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="UserFavourite" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -166,7 +155,7 @@
       <End Role="Metro" EntitySet="Metro" />
       <End Role="Metro_Branch" EntitySet="Metro_Branch" />
     </AssociationSet>
-    <AssociationSet Name="FK_Metro_Time_Metro_Branch" Association="Self.FK_Metro_Time_Metro_Branch">
+    <AssociationSet Name="FK_Metro_Time_Metro_Branch1" Association="Self.FK_Metro_Time_Metro_Branch1">
       <End Role="Metro_Branch" EntitySet="Metro_Branch" />
       <End Role="Metro_Time" EntitySet="Metro_Time" />
     </AssociationSet>
@@ -177,10 +166,6 @@
     <AssociationSet Name="FK_Time_Stop" Association="Self.FK_Time_Stop">
       <End Role="Stop" EntitySet="Stop" />
       <End Role="Time" EntitySet="Time" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Users_Route" Association="Self.FK_Users_Route">
-      <End Role="Route" EntitySet="Route" />
-      <End Role="Users" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

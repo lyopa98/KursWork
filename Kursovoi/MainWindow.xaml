@@ -5,29 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kursovoi"
         mc:Ignorable="d"
-        Title="MainWindow" Height="440" Width="700"
+        Title="MainWindow" Height="440" Width="918.5"
         Icon="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Images\icon-03.png" ResizeMode="CanMinimize">
 
     <Window.Resources>
         <Style TargetType="MenuItem">
             <Style.Setters>
                 <Setter Property="Margin" Value="5,5,10,5"/>
-            </Style.Setters>
-        </Style>
-
-        <Style TargetType="TextBox">
-            <Style.Setters>
-
-                <Setter Property="Opacity" Value="0.6"/>
+                <Setter Property="Foreground" Value="#ffffff"/>
+                <Setter Property="FontSize" Value="15"/>
             </Style.Setters>
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-
-                    <Setter Property="Opacity" Value="1" />
-
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" Value="Azure"/>
                 </Trigger>
             </Style.Triggers>
+        </Style>
 
+        <Style TargetType="ListBox">
+            <Style.Setters>
+                <Setter Property="Foreground" Value="#ffffff"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style.Setters>
         </Style>
 
 
@@ -35,70 +34,79 @@
 
     </Window.Resources>
     <Grid>
-        <Menu x:Name="MainMenu" HorizontalAlignment="Left" Width="140">
-            <TextBox Width="109"  Height="21"   AcceptsReturn="True" GotFocus="SeacrhButton_GotFocus" 
-                     x:Name="SeacrhButton" Text="Поиск"/>
+        <Menu x:Name="MainMenu" HorizontalAlignment="Left" Width="161" Background="#474747">
+            <Grid Width="132">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="26*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox  IsEditable="True" Grid.Column="0"
+                     x:Name="SeacrhButton"/>
+                <Button Grid.Column="1" Click="SearchStops">
+                    <Image Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Images\search.png"/>
+                </Button>
+            </Grid>
 
+            <MenuItem Header="Поиск маршрута" Click="SearchRoute"/>
             <MenuItem Header="Маршруты" Click="MITimetable_Click" x:Name="MenuH"/>
             <MenuItem Header="Остановки" Click="MIStation_Click" ></MenuItem>
             <MenuItem Header="Станции метро" Click="MIMetroStation_Click"></MenuItem>
-            <MenuItem Header="Новости" Click="MINews_Click" ></MenuItem>
             <MenuItem Header="Избранное" Click="MIFavorites_Click"  ></MenuItem>
-            <MenuItem Header="Информация" Click="MIInformation_Click" ></MenuItem>
         </Menu>
 
         <Grid Margin="140,0,0,0" x:Name="MainGrid">
-            <Grid Background="IndianRed" HorizontalAlignment="Left" Width="552" Height="51" VerticalAlignment="Top" >
-                <TextBlock x:Name="TitleOfSelected"/>
-                <Button  Margin="451,0,0,28"  Background="IndianRed" Click="EnterBut" BorderBrush="{x:Null}">
+            <Grid Background="#dbdbdb"  HorizontalAlignment="Left" Width="762" Height="51" VerticalAlignment="Top" Margin="10,0,0,0" >
+                <TextBlock x:Name="TitleOfSelected" FontSize="18" Margin="10,0,0,0"/>
+                <Button  Margin="638,0,0,28"  Background="#bab8b8" Click="EnterBut" BorderBrush="{x:Null}" Name="LogIn">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Images\Enter.png" Width="20" Height="19"></Image>
-                        <TextBlock Width="71">Вход</TextBlock>
+                        <TextBlock Width="71" x:Name="Enter" Text="Вход"></TextBlock>
                     </StackPanel>
                 </Button>
 
-                <Button Margin="451,28,0,0" Background="IndianRed" Click="Button_Click" BorderBrush="{x:Null}">
-                    <StackPanel Orientation="Horizontal">
+                <Button Margin="638,28,0,0" Background="#bab8b8" Click="Button_Click" BorderBrush="{x:Null}" >
+                    <StackPanel Orientation="Horizontal" Width="96">
                         <Image Source="E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\Resourses\Images\registration.png" Width="20" Height="19"></Image>
                         <TextBlock Width="71">Регистрация</TextBlock>
                     </StackPanel>
                 </Button>
             </Grid>
-            <Grid Margin="0,51,0,0">
+            <Grid Margin="10,51,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="127*"></ColumnDefinition>
+                    <ColumnDefinition Width="503*"></ColumnDefinition>
 
-                    <ColumnDefinition Width="57*"></ColumnDefinition>
+                    <ColumnDefinition Width="259*"></ColumnDefinition>
 
                 </Grid.ColumnDefinitions>
 
-                <!--<Button Content="Автобус" Grid.Column="0" Height="30" VerticalAlignment="Top"/>
-                <Button Content="Троллейбус" Grid.Column="1" Height="30" VerticalAlignment="Top" />
-                <Button Content="Трамвай" Grid.Column="2" Height="30" VerticalAlignment="Top" />-->
 
-                <!--<TextBlock Grid.Column="0" Background="Aqua" Height="358" x:Name="GridColumn1"
-                           VerticalAlignment="Top" HorizontalAlignment="Left" Width="381" >Колонка 1</TextBlock>-->
-                <ListBox Grid.Column="0" Background="WhiteSmoke" x:Name="GridColumn1" Height="358" Width="381"
+
+
+                <ListBox Grid.Column="0" x:Name="GridColumn1" Height="358" Width="381" Background="#5867b0"
                          VerticalAlignment="Top" HorizontalAlignment="Left" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
 
                                 <TextBlock Width="320" Text="{Binding Path=text}" />
-                                <Button Tag="{Binding Path=text}" Click="FavoriteBtn" >
+                                <Button Tag="{Binding Path=text}" Click="FavoriteBtn" x:Name="kkk">
                                     <Image   Source="{Binding Path=pict}" ></Image>
                                 </Button>
                             </StackPanel>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding isFav}" Value="true">
+                                    <Setter TargetName="kkk" Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
                         </DataTemplate>
+
                     </ListBox.ItemTemplate>
                 </ListBox>
 
-                
 
-                <ListBox  VerticalAlignment="Top" Height="358" Background="Coral" Grid.Column="1" x:Name="GridColumn2">
-                    
-                </ListBox>
 
+                <ListBox  VerticalAlignment="Top" Height="358" Background="#5867b0" x:Name="GridColumn2" Grid.ColumnSpan="2" Margin="381,0,0,0" HorizontalAlignment="Left" Width="178"/>
+                <ListBox Grid.Column="1" Margin="56,0,0,0" Background="#5867b0"  x:Name="GridColumn3"/>
 
             </Grid>
 

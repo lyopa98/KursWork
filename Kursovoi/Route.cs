@@ -18,16 +18,17 @@ namespace Kursovoi
         public Route()
         {
             this.Stop = new HashSet<Stop>();
-            this.Users = new HashSet<Users>();
+            
         }
-    
-        public int Number { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-    
+        public int RouteID { get; set; }
+        public string RouteName { get; set; }
+        public string RouteType { get; set; }
+        public string RouteNumber { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stop> Stop { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+
+        //--------------------------------------------REPOZITORY----------------------------------------------------
+        
+
     }
 }

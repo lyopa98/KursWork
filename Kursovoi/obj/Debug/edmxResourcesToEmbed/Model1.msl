@@ -21,9 +21,10 @@
     <EntitySetMapping Name="Route">
       <EntityTypeMapping TypeName="KursWorkModel.Route">
         <MappingFragment StoreEntitySet="Route">
-          <ScalarProperty Name="Number" ColumnName="Number" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+          <ScalarProperty Name="RouteName" ColumnName="RouteName" />
+          <ScalarProperty Name="RouteType" ColumnName="RouteType" />
+          <ScalarProperty Name="RouteNumber" ColumnName="RouteNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

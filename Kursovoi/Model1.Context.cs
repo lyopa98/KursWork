@@ -25,13 +25,13 @@ namespace Kursovoi
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Metro> Metro { get; set; }
-        public virtual DbSet<Metro_Branch> Metro_Branch { get; set; }
-        public virtual DbSet<Route> Route { get; set; }
-        public virtual DbSet<Stop> Stop { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Metro> Metro { get; set; }//
+        public virtual DbSet<Metro_Branch> Metro_Branch { get; set; }//
+        public virtual DbSet<Route> Route { get; set; }//
+        public virtual DbSet<Stop> Stop { get; set; }//
+        public virtual DbSet<Users> Users { get; set; }//
         public virtual DbSet<Information> Information { get; set; }
-        public virtual DbSet<Metro_Time> Metro_Time { get; set; }
-        public virtual DbSet<Time> Time { get; set; }
+        public virtual DbSet<Metro_Time> Metro_Time { get; set; }//
+        public virtual DbSet<Time> Time { get; set; }//
     }
 }

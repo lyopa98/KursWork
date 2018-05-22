@@ -66,6 +66,7 @@
     <Compile Include="Information.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="IRepozitory.cs" />
     <Compile Include="log_in.xaml.cs">
       <DependentUpon>log_in.xaml</DependentUpon>
     </Compile>
@@ -96,8 +97,18 @@
     <Compile Include="Registration2.xaml.cs">
       <DependentUpon>Registration2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RepozitoryMetro.cs" />
+    <Compile Include="RepozitoryMetro_Branch.cs" />
+    <Compile Include="RepozitoryMetro_Time.cs" />
+    <Compile Include="RepozitoryRoute.cs" />
+    <Compile Include="RepozitoryStop.cs" />
+    <Compile Include="RepozitoryUser.cs" />
+    <Compile Include="Repozitory_Time.cs" />
     <Compile Include="Route.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchRouteWindow.xaml.cs">
+      <DependentUpon>SearchRouteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Stop.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -105,9 +116,11 @@
     <Compile Include="Time.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="UnitOfWork.cs" />
     <Compile Include="Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="WorkWithMenu.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -157,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resourses\Transport\Trolleibus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchRouteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +241,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resourses\Images\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

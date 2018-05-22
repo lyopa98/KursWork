@@ -30,4 +30,6 @@ E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\bin\Debug\EntityFramework.SqlServe
 E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\bin\Debug\EntityFramework.xml
 E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\bin\Debug\EntityFramework.SqlServer.xml
 E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\obj\Debug\Kursovoi_Content.g.cs
+E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\obj\Debug\SearchRouteWindow.g.cs
+E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\obj\Debug\SearchRouteWindow.baml
 E:\Учёба\C#\II semestr\Kursovoi\Kursovoi\obj\Debug\Kursovoi.csprojResolveAssemblyReference.cache

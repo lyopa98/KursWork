@@ -14,17 +14,12 @@ namespace Kursovoi
     
     public partial class Users
     {
+        public static string Login { get; set; }
+        public static string Password { get; set; }
         public int UserID { get; set; }
         public string UserLogin { get; set; }
         public string UserPassword { get; set; }
-        public Nullable<int> UserFavourite { get; set; }//string
+        public string UserFavourite { get; set; }
         public string UserEmail { get; set; }
-    
-        public virtual Route Route { get; set; }
-
-        public override string ToString()
-        {
-            return this.UserEmail + "   " + this.UserLogin + "   " + this.UserPassword;
-        }
     }
 }

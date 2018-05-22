@@ -24,6 +24,6 @@ namespace Kursovoi
         public string NameBranch { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Metro_Branch> Metro_Branch { get; }
+        public virtual ICollection<Metro_Branch> Metro_Branch { get; set; }
     }
 }
